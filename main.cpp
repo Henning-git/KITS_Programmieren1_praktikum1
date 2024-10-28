@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits> // Für std::numeric_limits
+#include <iomanip>
 
 using namespace std;
 
@@ -111,13 +112,94 @@ void exercise_5() {
     cout << digit_100 << "\n" << digit_10 << "\n" << digit_1 << endl;
 }
 
+// Zinsrechner
+void exercise_6() {
+    // anfangskapital, zinssatz, laufzeit
+    // für jedes Jahr Wert ausgeben
+    // -------- user input --------
+    double kapital;
+    double zinssatz;
+    int laufzeit;
+
+    // validate kapital input
+    while(true) {
+        cout << "Gib das Startkapital ein: ";
+        cin >> kapital;
+
+        // check for invalid input
+        if(cin.fail() || kapital < 0) {
+            // reset cin error
+            cin.clear();
+
+            // ignore all characters until line break
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            // instruct user
+            cout << "invalid input" << endl;
+        }
+        else
+            break;
+    }
+
+    // validate zinssatz input
+    while(true) {
+        cout << "Gib den Zinssatz ein: ";
+        cin >> zinssatz;
+
+        // check for invalid input
+        if(cin.fail() || zinssatz < 0) {
+            // reset cin error
+            cin.clear();
+
+            // ignore all characters until line break
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            // instruct user
+            cout << "invalid input" << endl;
+        }
+        else
+            break;
+    }
+
+    // validate laufzeit input
+    while(true) {
+        cout << "Gib die Laufzeit in Jahren ein: ";
+        cin >> laufzeit;
+
+        // check for invalid input
+        if(cin.fail() || laufzeit < 0) {
+            // reset cin error
+            cin.clear();
+
+            // ignore all characters until line break
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            // instruct user
+            cout << "invalid input" << endl;
+        }
+        else
+            break;
+    }
+
+    // -------- calculation ---------
+    for(int i = 1; i <= laufzeit; i++) { // for each year
+        // berechne neues Kapital
+        kapital *= zinssatz / 100.0 + 1;
+
+        // output
+        cout << setw(3) << i;
+        cout << setw(11) << fixed << setprecision(2) << kapital << endl;
+    }
+}
+
 int main() {
     // call exercise
     //exercise_1();
     //exercise_2();
     //exercise_3();
     //exercise_4();
-    exercise_5();
+    //exercise_5();
+    exercise_6();
 
     // return 0 to system
     return 0;
