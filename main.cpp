@@ -1,6 +1,6 @@
 #include <iostream>
+#include <limits> // Für std::numeric_limits
 
-// imported from iostream
 using namespace std;
 
 // install qt
@@ -36,8 +36,44 @@ void exercise_3() {
     cout << "Ergebnis: " << sum << endl;
 }
 
+// 3x double input
+// calculate sum, product, average
 void exercise_4() {
+    // read numbers
+    double a, b, c;
+    while(true) {
+        // instruct user
+        cout << "input 3 floating point numbers: ";
 
+        // read 3 doubles
+        cin >> a >> b >> c;
+
+        // check for errors (e.g. wront type)
+        if(cin.fail()) {
+            // reset cin error
+            cin.clear();
+
+            // ignore all characters until line break
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            // instruct user
+            cout << "invalid input" << endl;
+        }
+        else
+            break;
+    }
+
+    // -------- calculate sum --------
+    double sum = a + b + c;
+    cout << "sum: " << sum << endl;
+
+    // -------- calculate product --------
+    double product = a * b * c;
+    cout << "product: " << product << endl;
+
+    // -------- calculate average --------
+    double average = (a + b + c) / 3.0;
+    cout << "average: " << average << endl;
 }
 
 int main() {
