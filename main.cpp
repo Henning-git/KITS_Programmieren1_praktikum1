@@ -39,7 +39,7 @@ void exercise_3() {
 // 3x double input
 // calculate sum, product, average
 void exercise_4() {
-    // read numbers
+    // -------- read numbers --------
     double a, b, c;
     while(true) {
         // instruct user
@@ -76,12 +76,48 @@ void exercise_4() {
     cout << "average: " << average << endl;
 }
 
+// split number
+void exercise_5() {
+    // -------- input --------
+    int input;
+
+    // validate input
+    while(true) {
+        cout << "enter a three digit integer: ";
+        cin >> input;
+
+        // check for invalid input
+        if(cin.fail() || input < 0 || input > 999) {
+            // reset cin error
+            cin.clear();
+
+            // ignore all characters until line break
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            // instruct user
+            cout << "invalid input" << endl;
+        }
+        else
+            break;
+    }
+
+    // split input
+    // example input = 789
+    int digit_1 = input % 10; // 789 % 10 = 9
+    int digit_10 = input / 10 % 10; // 789 / 10 = 78, 78 % 10 = 8
+    int digit_100 = input / 100; // 789 / 100 = 7
+
+    // output
+    cout << digit_100 << "\n" << digit_10 << "\n" << digit_1 << endl;
+}
+
 int main() {
     // call exercise
     //exercise_1();
     //exercise_2();
     //exercise_3();
-    exercise_4();
+    //exercise_4();
+    exercise_5();
 
     // return 0 to system
     return 0;
